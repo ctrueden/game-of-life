@@ -86,6 +86,8 @@ public class Life implements Command, Interactive {
 			for (int x=0; x<w; x++) {
 				final int i = y * w + x;
 				final int n = neighbors(ra, x, y, corners);
+				ra.setPosition(x, 0);
+				ra.setPosition(y, 1);
 				final boolean alive = ra.get().get();
 				if (alive) {
 					// Living cell stays alive if between min and max inclusive.
