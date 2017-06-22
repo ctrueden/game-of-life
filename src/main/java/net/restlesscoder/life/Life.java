@@ -1,6 +1,11 @@
 
 package net.restlesscoder.life;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+
 import net.imagej.Dataset;
 import net.imagej.DatasetService;
 import net.imagej.ImageJ;
@@ -114,6 +119,11 @@ public class Life implements Command, Interactive {
 		dataset.update();
 	}
 
+	/** Sets the field to an interesting pattern. */
+	public void pattern() throws IOException {
+		pattern("pulsar.txt");
+	}
+
 	// -- Command methods --
 
 	@Override
@@ -181,5 +191,36 @@ public class Life implements Command, Interactive {
 		ra.setPosition(x, 0);
 		ra.setPosition(y, 1);
 		return ra.get().get() ? 1 : 0;
+	}
+
+	private void pattern(String path) throws IOException {
+		org.scijava.util.BoolArray bools = new org.scijava.util.BoolArray();
+		int pw = 0;
+		try (final InputStream in = getClass().getResourceAsStream(path)) {
+			final BufferedReader reader = //
+				new BufferedReader(new InputStreamReader(in));
+			while (true) {
+				final String line = reader.readLine();
+				if (line == null) break;
+				for (char c : line.toCharArray()) {
+					bools.addValue(c == '*');
+				}
+				if (pw == 0) pw = bools.size();
+			}
+		}
+		int ph = bools.size() / pw;
+		int offsetX = (w - pw) / 2;
+		int offsetY = (h - ph) / 2;
+
+		final RandomAccess<NativeBoolType> ra = field.randomAccess();
+		for (int y = 0; y < ph; y++) {
+			for (int x = 0; x < pw; x++) {
+				final int i = y * pw + x;
+				ra.setPosition(offsetX + x, 0);
+				ra.setPosition(offsetY + y, 1);
+				ra.get().set(bools.getValue(i));
+			}
+		}
+		dataset.update();
 	}
 }
