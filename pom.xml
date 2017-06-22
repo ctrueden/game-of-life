@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+		http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>org.scijava</groupId>
+		<artifactId>pom-scijava</artifactId>
+		<version>14.0.0</version>
+		<relativePath />
+	</parent>
+
+	<groupId>net.restlesscoder</groupId>
+	<artifactId>life</artifactId>
+	<version>0.1.0-SNAPSHOT</version>
+
+	<name>Conway's Game of Life</name>
+	<description>...</description>
+	<url>https://github.com/ctrueden/life</url>
+	<inceptionYear>2017</inceptionYear>
+	<organization>
+		<name>None</name>
+	</organization>
+	<licenses>
+		<license>
+			<name>Unlicense</name>
+			<url>http://unlicense.org/</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+
+	<developers>
+		<developer>
+			<id>ctrueden</id>
+			<name>Curtis Rueden</name>
+			<url>http://imagej.net/User:Rueden</url>
+			<roles><role>founder</role></roles>
+		</developer>
+	</developers>
+	<contributors>
+		<contributor><name>None</name></contributor>
+	</contributors>
+
+	<mailingLists>
+		<mailingList>
+			<name>None</name>
+		</mailingList>
+	</mailingLists>
+
+	<scm>
+		<connection>scm:git:git://github.com/ctrueden/life</connection>
+		<developerConnection>scm:git:git@github.com:ctrueden/life</developerConnection>
+		<tag>HEAD</tag>
+		<url>https://github.com/ctrueden/life</url>
+	</scm>
+	<issueManagement>
+		<system>GitHub Issues</system>
+		<url>https://github.com/ctrueden/life/issues</url>
+	</issueManagement>
+	<ciManagement>
+		<system>None</system>
+	</ciManagement>
+
+	<properties>
+		<main-class>net.restlesscoder.life.Life</main-class>
+		<package-name>net.restlesscoder.life</package-name>
+		<license.licenseName>unlicense</license.licenseName>
+		<license.copyrightOwners>N/A</license.copyrightOwners>
+	</properties>
+
+	<repositories>
+		<repository>
+			<id>imagej.public</id>
+			<url>http://maven.imagej.net/content/groups/public</url>
+		</repository>
+	</repositories>
+
+	<dependencies>
+		<!-- ImageJ dependencies -->
+		<dependency>
+			<groupId>net.imagej</groupId>
+			<artifactId>imagej</artifactId>
+		</dependency>
+	</dependencies>
+</project>
