@@ -13,7 +13,7 @@
 	</parent>
 
 	<groupId>net.restlesscoder</groupId>
-	<artifactId>life</artifactId>
+	<artifactId>game-of-life</artifactId>
 	<version>0.1.0-SNAPSHOT</version>
 
 	<name>Conway's Game of Life</name>
