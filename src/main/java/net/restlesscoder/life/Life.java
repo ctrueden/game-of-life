@@ -12,8 +12,8 @@ import net.imagej.ImageJ;
 import net.imglib2.Cursor;
 import net.imglib2.RandomAccess;
 import net.imglib2.img.Img;
-import net.imglib2.img.array.ArrayImg;
-import net.imglib2.util.Fraction;
+import net.imglib2.img.array.ArrayImgs;
+import net.imglib2.type.logic.NativeBoolType;
 
 import org.scijava.command.Command;
 import org.scijava.command.Interactive;
@@ -68,7 +68,6 @@ public class Life implements Command, Interactive {
 	private Button pattern;
 
 	private int w = 64, h = 64;
-//	private IntervalView<NativeBoolType> field;
 	private Img<NativeBoolType> field;
 	private Dataset dataset;
 
@@ -130,18 +129,11 @@ public class Life implements Command, Interactive {
 
 	@Override
 	public void run() {
-		// create an Img backed by a boolean array
-		final ArrayImg<NativeBoolType, BoolArray> img = new ArrayImg<>(
-			new BoolArray(new boolean[w * h]), new long[] { w, h }, new Fraction());
-		final NativeBoolType t = new NativeBoolType( img );
-		img.setLinkedType( t );
-
-		// extend the Img to have zeroes out of bounds
-//		field = Views.interval(Views.extendZero(img), img);
-		field = img;
+		// create a boolean-typed image
+		field = ArrayImgs.booleans(w, h);
 
 		// wrap the image in a Dataset, for easy updating
-		dataset = datasetService.create(img);
+		dataset = datasetService.create(field);
 		dataset.setName("Life Simulation");
 
 		// show the image
