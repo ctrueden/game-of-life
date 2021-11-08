@@ -50,7 +50,7 @@
 	</mailingLists>
 
 	<scm>
-		<connection>scm:git:git://github.com/ctrueden/life</connection>
+		<connection>scm:git:https://github.com/ctrueden/life</connection>
 		<developerConnection>scm:git:git@github.com:ctrueden/life</developerConnection>
 		<tag>HEAD</tag>
 		<url>https://github.com/ctrueden/life</url>
